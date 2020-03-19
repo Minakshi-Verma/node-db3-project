@@ -43,13 +43,18 @@ async function add(scheme){
 
 //-----------
 
-function update(changes, id){
-    return db("schemes")
-    .where({id})
-    .update(changes) 
-    .then(()=>{
+// function update(changes, id){
+//     return db("schemes")
+//     .where({id})
+//     .update(changes) 
+//     .then(()=>{
+//     return findById(id)
+//     })
+// }
+
+    async function update(changes, id){
+    await db("schemes").where({id}).update(changes) 
     return findById(id)
-    })
 }
 
 //------------
