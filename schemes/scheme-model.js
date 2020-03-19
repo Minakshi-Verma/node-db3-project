@@ -4,6 +4,7 @@ module.exports = {
      find,
      findById,
      findSteps,
+     addStep,
      add,
      update,
      remove
@@ -33,13 +34,24 @@ function findSteps(id) {
       .orderBy("st.step_number");
   }
 
-//-----------
+ //-----------
+ 
 
 async function add(scheme){
  const [id] = await db("schemes").insert(scheme)
  return findById(id)
      
 }
+
+//------------THIS ONE iS STRETCH PROBLEM)----
+
+async function addStep(step,id){
+    await db("steps").insert(step)
+    return findById(id)
+
+}
+
+
 
 //-----------
 
