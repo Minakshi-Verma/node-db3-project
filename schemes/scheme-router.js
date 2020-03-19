@@ -1,8 +1,11 @@
 const express = require('express');
 
+// const db = require("../data/db-config");
 const Schemes = require('./scheme-model.js');
 
 const router = express.Router();
+
+//-----GET-----------
 
 router.get('/', (req, res) => {
   Schemes.find()
@@ -13,6 +16,8 @@ router.get('/', (req, res) => {
     res.status(500).json({ message: 'Failed to get schemes' });
   });
 });
+
+//--------GETbyID----------
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
@@ -30,6 +35,8 @@ router.get('/:id', (req, res) => {
   });
 });
 
+//-------GETstepsById-------
+
 router.get('/:id/steps', (req, res) => {
   const { id } = req.params;
 
@@ -46,6 +53,9 @@ router.get('/:id/steps', (req, res) => {
   });
 });
 
+
+//------POST--------
+
 router.post('/', (req, res) => {
   const schemeData = req.body;
 
@@ -57,6 +67,8 @@ router.post('/', (req, res) => {
     res.status(500).json({ message: 'Failed to create new scheme' });
   });
 });
+
+//------POSTsteps-------
 
 router.post('/:id/steps', (req, res) => {
   const stepData = req.body;
@@ -78,6 +90,9 @@ router.post('/:id/steps', (req, res) => {
   });
 });
 
+
+//------PUT----------
+
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -97,6 +112,9 @@ router.put('/:id', (req, res) => {
     res.status(500).json({ message: 'Failed to update scheme' });
   });
 });
+
+
+//---------DELETE----------
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
